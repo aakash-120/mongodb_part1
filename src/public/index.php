@@ -15,11 +15,6 @@ use Phalcon\Url;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Config;
 // use IntegrationTester;
-use MongoDB\Database;
-use MongoDB\Driver\Cursor;
-use Phalcon\Incubator\MongoDB\Test\Fixtures\Mvc\Collections\Robots;
-use Phalcon\Incubator\MongoDB\Test\Fixtures\Traits\DiTrait;
-use Phalcon\Incubator\MongoDB\Mvc\Collection\Manager;
 
 $config = new Config([]);
 
@@ -84,48 +79,13 @@ $application = new Application($container);
 //         }
 // );
 
-$container->set(
-    'mongo',
-    function () {
-        $mongo = new MongoClient();
 
-        return $mongo->selectDB('test');
-    },
-    true
-);
-
-// Setting Mongo Connection
-// $di->set('mongo', function() {
-//     $mongo = new Mongo();
-//     return $mongo->selectDb("test");
-// }, true);
-
-// // Setting up the collection Manager
-// $di->set('collectionManager', function(){
-//     return new Phalcon\Mvc\Collection\Manager();
-// }, true);
-
-// $di->set('config', function () {
-//     return new \Phalcon\Config([
-//         'mongodb' => [
-//             'host'     => 'localhost',
-//             'port'     => 27017,
-//             'database' => 'test'
-//         ]
-//     ]);
-// }, true);
-
-// $di->set('mongo', function () use ($di) {
-//     $config  = $di->get('config')->mongodb;
-//     $manager = new \MongoDB\Client('mongodb://' . $config->host . ':' . $config->port);
-//     return $manager;
-// },  true);
 
 $container->set(
     'mongo',
     function () {
-        $mongo = new \MongoDB\Client("mongodb://mongo3", array("username" => "root", "password" => "password123"));
-        return $mongo->test;
+        $mongo = new \MongoDB\Client("mongodb://mongo", array("username" => "root", "password" => "password123"));
+        return $mongo;
     },
     true
 );

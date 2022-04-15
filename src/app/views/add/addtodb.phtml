@@ -1,0 +1,187 @@
+<?php
+ $collection = $this->mongo->test->task;
+
+$cursor = $collection->find();
+// // echo "<pre>";
+// // print_r($cursor->toArray());
+// // die;
+
+// foreach ($cursor as $a) {
+    
+//     echo $a["username"] . "\n";
+//     echo $a["category"] . "\n";
+//     echo $a["price"] . "\n";
+//     echo $a["stock"] . "\n";
+//     foreach ($a["myarray"] as $b) {
+//     echo $b["label"] . "\n";
+//     echo $b["value"] . "\n";
+//     }
+// echo "<br>";
+
+//  }
+
+
+
+
+// die;
+?>
+
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background: url(https://images.pexels.com/photos/4050348/pexels-photo-4050348.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260) no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+</style>
+
+
+<?php
+
+
+foreach ($cursor as $a) {
+    // foreach ($a["myarray"] as $b) {
+    //     echo $b["label"];
+?>
+
+<div class="box">
+	<a class="button" href="#<?php echo $a['myarray']['0']["label"] ?>">Additional Fields</a>
+    <p class="m-0 p-0">Username : <?php echo $a["username"] ?></p>
+                    <p class="m-0 p-0">Category : <?php echo  $a["category"] ?></p>
+                    <p class="m-0 p-0">Price : <?php echo $a["price"] ?></p>
+                    <p class="m-0 p-0">Stock :<?php echo $a["stock"] ?></p>
+
+</div>
+<br>
+
+<?php
+   // }
+//}
+
+?>
+
+
+
+<?php
+// if(isset($b["label"]))
+// {
+// foreach ($cursor as $a) {
+    foreach ($a["myarray"] as $b) {
+
+    // echo $b["label"] . "\n";
+    // echo $b["value"] . "\n";
+?>
+
+<div id="<?php echo $b["label"] ?>" class="overlay">
+	<div class="popup">
+		
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			
+            <?php  echo "Label : ".$b["label"] . "<br>";?>  
+            <?php  echo "Value : ".$b["value"] . "\n";?>  
+            
+		</div>
+	</div>
+</div>
+
+<?php
+ }
+
+}
+
+
+?>
+
