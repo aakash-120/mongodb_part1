@@ -8,6 +8,18 @@ class AddController extends Controller
     {
     }
 
+    public function deleteAction()
+    {
+        //$id = $this->request->getPost('id');
+        
+        $id = $_GET['id'];
+       
+        $collection = $this->mongo->test->task;
+        $save = $collection->deleteOne(["_id" => new \MongoDB\BSON\ObjectID($id)]);
+        $this->response->redirect('/add/addtodb');
+
+    }
+
     public function addtodbAction()
     {
         print_r($_POST);

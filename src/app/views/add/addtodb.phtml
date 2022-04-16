@@ -2,9 +2,9 @@
  $collection = $this->mongo->test->task;
 
 $cursor = $collection->find();
-// // echo "<pre>";
-// // print_r($cursor->toArray());
-// // die;
+// echo "<pre>";
+// print_r($cursor->toArray());
+// die;
 
 // foreach ($cursor as $a) {
     
@@ -110,11 +110,7 @@ h1 {
 .popup .close:hover {
   color: #06D85F;
 }
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
-}
-
+.popup .content {.
 
 
 @media screen and (max-width: 700px){
@@ -127,61 +123,41 @@ h1 {
 }
 </style>
 
-
 <?php
-
-
 foreach ($cursor as $a) {
-    // foreach ($a["myarray"] as $b) {
-    //     echo $b["label"];
 ?>
-
 <div class="box">
-	<a class="button" href="#<?php echo $a['myarray']['0']["label"] ?>">Additional Fields</a>
+	<a class="button" href="#<?php echo $a["username"] ?>">Additional Fields</a>
     <p class="m-0 p-0">Username : <?php echo $a["username"] ?></p>
                     <p class="m-0 p-0">Category : <?php echo  $a["category"] ?></p>
                     <p class="m-0 p-0">Price : <?php echo $a["price"] ?></p>
                     <p class="m-0 p-0">Stock :<?php echo $a["stock"] ?></p>
+                    <a href=/add/delete?id=<?php echo $a["_id"] ?>>Delete</a>
 
 </div>
 <br>
 
 <?php
-   // }
-//}
-
+  //  foreach ($a["myarray"] as $b) {
+    for($j =0 ; $j <count($a['myarray']) ; $j++){
 ?>
 
-
-
-<?php
-// if(isset($b["label"]))
-// {
-// foreach ($cursor as $a) {
-    foreach ($a["myarray"] as $b) {
-
-    // echo $b["label"] . "\n";
-    // echo $b["value"] . "\n";
-?>
-
-<div id="<?php echo $b["label"] ?>" class="overlay">
-	<div class="popup">
-		
-		<a class="close" href="#">&times;</a>
-		<div class="content">
-			
-            <?php  echo "Label : ".$b["label"] . "<br>";?>  
-            <?php  echo "Value : ".$b["value"] . "\n";?>  
-            
-		</div>
+<div id="<?php echo $a["username"]; //echo $b["label"] ?>" class="overlay" >
+	<div class="popup">		     
+		<a class="close" href="#">&times;</a>  
+		<div class="content">		          	    
+           <?php for($p =0 ; $p <count($a['myarray']) ; $p++){ ?>
+            <?php 
+            echo "Label : ".$a['myarray'][$p]["label"] . "<br>"; 
+            echo "value : ".$a['myarray'][$p]["value"] . "<br><br>"; 
+          }?> 
+                        
+		</div>        
 	</div>
 </div>
 
 <?php
  }
-
 }
-
-
 ?>
 
