@@ -132,7 +132,8 @@ foreach ($cursor as $a) {
                     <p class="m-0 p-0">Category : <?php echo  $a["category"] ?></p>
                     <p class="m-0 p-0">Price : <?php echo $a["price"] ?></p>
                     <p class="m-0 p-0">Stock :<?php echo $a["stock"] ?></p>
-                    <a href=/add/delete?id=<?php echo $a["_id"] ?>>Delete</a>
+                    <a class="btn btn-primary"href=/add/delete?id=<?php echo $a["_id"] ?>>Delete</a>
+                    <a class="btn btn-danger" href=/add/edit?id=<?php echo $a["_id"] ?>>Edit</a>
 
 </div>
 <br>
