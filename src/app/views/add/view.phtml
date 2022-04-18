@@ -47,7 +47,7 @@ h1 {
   background: rgba(255,255,255,0.2);
   padding: 35px;
   border: 2px solid #fff;
-  border-radius: 20px/50px;
+  border-radius: 50px;
   background-clip: padding-box;
   text-align: center;
 }
@@ -147,11 +147,26 @@ foreach ($cursor as $a) {
 	<div class="popup">		     
 		<a class="close" href="#">&times;</a>  
 		<div class="content">		          	    
-           <?php for($p =0 ; $p <count($a['myarray']) ; $p++){ ?>
-            <?php 
+           <?php 
+            if(isset($a['myarray']))
+            {
+           for($p =0 ; $p <count($a['myarray']) ; $p++){ 
+            
             echo "Label : ".$a['myarray'][$p]["label"] . "<br>"; 
             echo "value : ".$a['myarray'][$p]["value"] . "<br><br>"; 
-          }?> 
+          }
+        }
+echo "<br><br>";
+          if(isset($a['myarrayV']))
+          {
+          for($p1 =0 ; $p1 <count($a['myarrayV']) ; $p1++){ 
+            
+            echo "Label : ".$a['myarrayV'][$p1]["labelv"] . "<br>"; 
+            echo "value : ".$a['myarrayV'][$p1]["valuev"] . "<br>"; 
+            echo "field : ".$a['myarrayV'][$p1]["fieldv"] . "<br><br>"; 
+          }
+        }
+          ?> 
                         
 		</div>        
 	</div>

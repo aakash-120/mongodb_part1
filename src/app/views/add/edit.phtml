@@ -88,6 +88,7 @@
             <label>Category : </label>
             <input type="text" placeholder="Enter Category" name="category" value="<?php print_r($edit_data['category']); ?>">
             <br>
+           
             <label>price : </label>
             <input type="text" placeholder="Enter Price" name="price" value="<?php print_r($edit_data['price']); ?>">
             <br>
@@ -95,11 +96,24 @@
             <input type="text" placeholder="Enter Stock" name="stock" value="<?php print_r($edit_data['stock']); ?>">
             <br><br>
 
-
+            <h4>Additional Field</h4> 
             <?php
             foreach ($edit_data['myarray'] as $a) {
-                echo "label: <input type='text' name='label[]' placeholder=" . $a['label'] . "><br><br>";
-                echo "value: <input type='text' name='value[]' placeholder=" . $a['value'] . "><br><br>";
+                echo "label: <input type='text' name='label[]' value=" . $a['label'] . "><br><br>";
+                echo "value: <input type='text' name='value[]' value=" . $a['value'] . "><br><br>";
+            }
+            ?>
+
+            <br>
+
+
+
+            <h4>Additional Variation</h4> 
+            <?php
+            foreach ($edit_data['myarrayV'] as $a) {
+                echo "label: <input type='text' name='labelv[]' value=" . $a['labelv'] . "><br><br>";
+                echo "value: <input type='text' name='valuev[]' value=" . $a['valuev'] . "><br><br>";
+                echo "field: <input type='text' name='fieldv[]' value=" . $a['fieldv'] . "><br><br>";
             }
             ?>
 
