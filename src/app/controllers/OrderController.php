@@ -6,11 +6,11 @@ class OrderController extends Controller
 {
     public function indexAction()
     {
-        if(isset($_POST['submit']))
-        {
-        print_r($_POST);
-        die;
-        }
+        // if(isset($_POST['submit']))
+        // {
+        // print_r($_POST);
+        // die;
+        // }
         $collection = $this->mongo->test->task;
         $cursor = $collection->find();
         echo "<pre>";
@@ -19,8 +19,40 @@ class OrderController extends Controller
         $this->view->data = $cursor;
     }
 
-    public function orderAction()
+    public function orderaddAction()
     {
+        if(isset($_POST['submit']))
+        {
+        print_r($_POST);
+        $cname = $this->request->getPost('cname');
+        $cquantity = $this->request->getPost('cquantity');
+        $variationid = $this->request->getPost('variationid');
+        $VARIATIONS = $this->request->getPost('VARIATIONS');
+        $date = date("Y-m-d");
+
+        echo $date;
+        $collection = $this->mongo->test->ordertask;
+        $insertOneResult = $collection->insertOne(['cname' => $cname, 'cquantity' => $cquantity, 'variationid' => $variationid, 'VARIATIONS' => $VARIATIONS, 'date' => $date, 'status' => 'paid' ]);
+        $this->response->redirect('/order/orderview');
+
+
+       // die;
+        }
+    }
+
+    public function orderviewAction()
+    {
+        echo "orderviewAction";
+        $collection = $this->mongo->test->task;
+        $cursor = $collection->find();
+
+        $collection2 = $this->mongo->test->ordertask;
+        $cursor2 = $collection2->find();
+
+        $this->view->cursor = $cursor;
+        $this->view->cursor2 = $cursor2;
+
+
     }
 
     public function ajaxAction()
@@ -30,39 +62,15 @@ class OrderController extends Controller
         //  die;
         $collection = $this->mongo->test->task;
         $cursor = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
-        //  $cursor = $collection->find();
-        echo "<pre>";
-        //   print_r($cursor);
-        //   die;
+        $this->view->cursor = $cursor;
 
+        // echo "<select name = 'VARIATIONS' >";
+        // foreach ($cursor['myarrayV'] as $p) {
 
+        //     print_r('<option>' . $p['labelv'] . $p['valuev'] . $p['fieldv'] . '</option>');
+        // }
+        // echo "</select>";
 
-        echo "<select name = 'k2a' >";
-        foreach ($cursor['myarrayV'] as $p) {
-
-            print_r('<option>' . $p['labelv'] . $p['valuev'] . $p['fieldv'] . '</option>');
-        }
-        echo "</select>";
-
-
-        //echo "<select>";
-        //    foreach ($cursor as $k) {
-
-        //         if(isset($k["myarrayV"]))
-        //         {
-        //          foreach ($k['myarrayV'] as $k1) {
-        //             print_r($k1['labelv']);
-        //             print_r($k1['valuev']);
-        //             print_r($k1['fieldv']);
-        //             print_r("<br>");
-
-        //          }
-        //         }
-        //    }
-
-        //  echo "</select>";
-
-
-        die;
+        // die;
     }
 }

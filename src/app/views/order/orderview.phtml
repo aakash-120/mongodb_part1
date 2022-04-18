@@ -1,0 +1,107 @@
+<?php
+echo "<pre>";
+
+$secondArray = $cursor2->toArray();
+$firstArray = $cursor->toArray();
+
+
+// foreach($secondArray as $p)
+// {
+//     foreach($firstArray as $k)
+//     {
+//         if($k['_id'] == $p['variationid'])
+//         {
+//             foreach($k['myarrayV'] as $k1=>$v1)
+//             {
+//                 echo $k1;
+//                 echo "----";
+//                // echo $v1;
+//             }    
+//             echo "+++";
+//            // print_r($k['myarrayV']);   
+//        }
+        
+//     }
+// }
+
+
+
+
+//  die;
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+
+<table>
+  <tr>
+    <th>Customer Name</th>
+    <th>Quantity</th>
+    <th>variation</th>
+    <th>date</th>
+    <th>status</th>
+  </tr>
+
+
+  <?php
+  foreach($secondArray as $p)
+{
+    print_r("<tr>");
+print_r("<td>".$p['cname']."</td>");
+print_r("<td>".$p['cquantity']."</td>");
+print_r("<td>");
+foreach($firstArray as $k)
+{
+    if($k['_id'] == $p['variationid'])
+    {   
+        foreach($k['myarrayV'] as $k1=>$v1)
+        {
+            if($k1 == $p['VARIATIONS'])
+            {
+                 echo $v1['labelv'];
+                 echo $v1['valuev'];
+                 echo $v1['fieldv'];
+
+            }
+        }      
+   }
+    
+}
+print_r("</td>");
+print_r("<td>".$p['date']."</td>");
+print_r("<td>".$p['status']."</td>");
+print_r("</tr>");
+}
+?>
+
+ 
+</table>
+
+</body>
+</html>
+
+

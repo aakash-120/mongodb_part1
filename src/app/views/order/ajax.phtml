@@ -1,0 +1,14 @@
+<?php
+
+echo "<select name = 'VARIATIONS' >";
+$i =0 ;
+        foreach ($cursor['myarrayV'] as $p) {
+            // print_r('<option>' . $i . '</option>');
+            
+            print_r('<option value="'.$i.'">' . $p['labelv'] . $p['valuev'] . $p['fieldv'] . '</option>');
+            $i++;
+        }
+        echo "</select>";
+
+?>
+      
